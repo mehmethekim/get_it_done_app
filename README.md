@@ -3,10 +3,10 @@
 This is a Flutter project for developing a task management system. The app allows users to manage their tasks and organize them using a new approach based on the book "Getting Things Done" by David Allen. The goal of this project is to provide a user-friendly interface for task management and productivity enhancement.
 
 Below you can see the basic flow tof the incoming tasks. Workflow includes four parts;
-* Collect
-* Process
-* Organize
-* Review
+* *Collect*
+* *Process*
+* *Organize*
+* *Review*
 
 ## 1. Collect
 

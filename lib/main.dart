@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it_done_app/screen/home_screen.dart';
 
+import 'bloc/bloc_import.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,11 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return BlocProvider(
+      create: (context) => BottomNavigationBarBloc(),
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomeScreen(),
       ),
-      home: HomeScreen(),
     );
   }
 }

@@ -47,9 +47,11 @@ After reviewing the tasks, you need to do them. Doing means to complete the task
 
 ### Phase 1: Setup and Basic Functionality
 
-- [ ] Set up the Flutter project structure and dependencies.
+- [X] Set up the Flutter project structure and dependencies.
 - [ ] Make a basic in-basket list with the ability to add, edit, and delete tasks.
 - [ ] Add support for task categories and labels.
+- [X] Implement Bloc Architecture for state management.
+- [X] Implement bottom navigation bar that can change screens
 
 ### Phase 2: Task Management and Organization
 

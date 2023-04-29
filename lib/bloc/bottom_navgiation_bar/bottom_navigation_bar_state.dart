@@ -8,3 +8,12 @@ class BottomNavigationBarState extends Equatable {
 }
 
 class BottomNavigationBarInitial extends BottomNavigationBarState {}
+
+class ActiveScreenChangedState extends BottomNavigationBarState {
+  final int activeScreenIndex;
+
+  const ActiveScreenChangedState(this.activeScreenIndex);
+
+  @override
+  List<Object> get props => [activeScreenIndex];
+}

@@ -1,100 +1,55 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rive/rive.dart';
-
 import '../bloc/bloc_import.dart';
+import '../models/bottom_navigation_bar.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            child: const Center(
+              child: Text(
+                "Home Screen",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: CupertinoColors.activeBlue,
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: Container(
+                  width: 50, // Set your desired width here
+                  height: 50, // Set your desired height here
+                  decoration: BoxDecoration(
+                    color: CupertinoColors.activeBlue,
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Icon(
+                    CupertinoIcons.add_circled_solid,
+                    color: CupertinoColors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       bottomNavigationBar: SafeArea(
         child: BlocBuilder<BottomNavigationBarBloc, BottomNavigationBarState>(
           builder: (context, state) {
-            return Container(
-              padding: const EdgeInsets.all(12),
-              //padding: EdgeInsets.only(bottom: 30),
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 66, 93, 126),
-                borderRadius: BorderRadius.all(Radius.circular(30)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () => context
-                        .read<BottomNavigationBarBloc>()
-                        .add(UserButtonClickEvent()),
-                    child: const SizedBox(
-                      height: 36,
-                      width: 36,
-                      child: RiveAnimation.asset(
-                        'assets/RiveAssets/animated_icons.riv',
-                        artboard: "USER",
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () => context
-                        .read<BottomNavigationBarBloc>()
-                        .add(BellButtonClickEvent()),
-                    child: const SizedBox(
-                      height: 36,
-                      width: 36,
-                      child: RiveAnimation.asset(
-                        'assets/RiveAssets/animated_icons.riv',
-                        artboard: "BELL",
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () => context
-                        .read<BottomNavigationBarBloc>()
-                        .add(HomeButtonClickEvent()),
-                    child: const SizedBox(
-                      height: 36,
-                      width: 36,
-                      child: RiveAnimation.asset(
-                        'assets/RiveAssets/animated_icons.riv',
-                        artboard: "HOME",
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () => context
-                        .read<BottomNavigationBarBloc>()
-                        .add(SearchButtonClickEvent()),
-                    child: const SizedBox(
-                      height: 36,
-                      width: 36,
-                      child: RiveAnimation.asset(
-                        'assets/RiveAssets/animated_icons.riv',
-                        artboard: "SEARCH",
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () => context
-                        .read<BottomNavigationBarBloc>()
-                        .add(SettingsButtonClickEvent()),
-                    child: const SizedBox(
-                      height: 36,
-                      width: 36,
-                      child: RiveAnimation.asset(
-                        'assets/RiveAssets/animated_icons.riv',
-                        artboard: "SETTINGS",
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
+            return CustomBottomNavigationBar();
           },
         ),
       ),

@@ -4,10 +4,10 @@ abstract class BottomNavigationBarEvent {}
 
 class HomeButtonClickEvent extends BottomNavigationBarEvent {}
 
-class BellButtonClickEvent extends BottomNavigationBarEvent {}
+class CalendarButtonClickEvent extends BottomNavigationBarEvent {}
 
-class SettingsButtonClickEvent extends BottomNavigationBarEvent {}
+class NextButtonClickEvent extends BottomNavigationBarEvent {}
 
-class SearchButtonClickEvent extends BottomNavigationBarEvent {}
+class ListButtonClickEvent extends BottomNavigationBarEvent {}
 
-class UserButtonClickEvent extends BottomNavigationBarEvent {}
+class ReviewButtonClickEvent extends BottomNavigationBarEvent {}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it_done_app/screen/calendar_screen.dart';
 import 'package:get_it_done_app/screen/home_screen.dart';
+import 'color_schemes.g.dart';
 
 import 'bloc/bloc_import.dart';
 
@@ -13,12 +14,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BottomNavigationBarBloc(),
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<BottomNavigationBarBloc>(
+          create: (context) => BottomNavigationBarBloc(),
         ),
+        BlocProvider<TaskBloc>(
+          create: (context) => TaskBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+        darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+        themeMode: ThemeMode.light, // Default is system
         home: const BottomNavigationHandler(),
       ),
     );

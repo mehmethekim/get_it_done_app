@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../bloc/bloc_import.dart';
-import '../models/bottom_navigation_bar.dart';
+import '../widgets/bottom_navigation_bar.dart';
 
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({super.key});

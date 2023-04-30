@@ -1,80 +1,60 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it_done_app/widgets/task_list.dart';
 import '../bloc/bloc_import.dart';
-import '../models/bottom_navigation_bar.dart';
+import '../widgets/bottom_navigation_bar.dart';
 import '../models/task.dart';
+import '../color_schemes.g.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  List<PrimitiveTask> UnprocessedTaskList = [
-    PrimitiveTask(title: "Task1"),
-    PrimitiveTask(title: "Task2"),
-    PrimitiveTask(title: "Task3"),
-  ];
+  void _addTask(BuildContext context) {
+    print("Task added");
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 200,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[Text('Modal BottomSheet')],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Unprocessed Tasks'),
-        backgroundColor: Color.fromARGB(255, 66, 93, 126),
-        foregroundColor: CupertinoColors.white,
+        backgroundColor: lightColorScheme.primaryContainer,
+        foregroundColor: lightColorScheme.onPrimaryContainer,
       ),
-      body: Stack(
+      body: Column(
         children: [
-          Container(
-            child: const Center(
-              child: Text(
-                "Home Screen",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: CupertinoColors.activeBlue,
-                ),
-              ),
-            ),
-          ),
-          // Align(
-          //   alignment: Alignment.bottomRight,
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(30.0),
-          //     child: GestureDetector(
-          //       onTap: () {},
-          //       child: Container(
-          //         width: 50, // Set your desired width here
-          //         height: 50, // Set your desired height here
-          //         decoration: BoxDecoration(
-          //           color: CupertinoColors.activeBlue,
-          //           borderRadius: BorderRadius.circular(30.0),
-          //         ),
-          //         child: Icon(
-          //           CupertinoIcons.add_circled_solid,
-          //           color: CupertinoColors.white,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
-
-          ListView.builder(
-              itemBuilder: (context, index) {
-                var task = UnprocessedTaskList[index];
-                return ListTile(
-                  title: Text(task.title),
-                  trailing: Checkbox(value: task.isDone, onChanged: (value) {}),
-                );
-              },
-              itemCount: UnprocessedTaskList.length)
+          BlocBuilder<TaskBloc, TaskState>(
+            builder: (context, state) {
+              List<PrimitiveTask> unprocessed_task_list =
+                  state.unprocessedTaskList;
+              return TaskList(UnprocessedTaskList: unprocessed_task_list);
+            },
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
           CupertinoIcons.add_circled_solid,
-          color: CupertinoColors.white,
+          color: lightColorScheme.onPrimaryContainer,
         ),
         onPressed: () {
           // Add your onPressed code here!
+          _addTask(context);
         },
       ),
       bottomNavigationBar: SafeArea(
